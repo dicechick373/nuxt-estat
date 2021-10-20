@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-estat",
+  "name": "type-test",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -14,6 +14,8 @@
     "vuetify": "^2.5.5"
   },
   "devDependencies": {
+    "@nuxt/types": "^2.15.7",
+    "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/vuetify": "^1.12.1"
   }
 }
