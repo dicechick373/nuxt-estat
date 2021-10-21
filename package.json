@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-estat",
+  "name": "type-test",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -9,11 +9,16 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.13.6",
     "core-js": "^3.15.1",
+    "highcharts": "^9.2.2",
+    "highcharts-vue": "^1.4.0",
     "nuxt": "^2.15.7",
     "vuetify": "^2.5.5"
   },
   "devDependencies": {
+    "@nuxt/types": "^2.15.7",
+    "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/vuetify": "^1.12.1"
   }
 }
