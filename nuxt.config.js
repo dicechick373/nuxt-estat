@@ -2,7 +2,9 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
   publicRuntimeConfig: {
-    RESAS_API_KEY: process.env.RESAS_API_KEY,
+    // RESAS_API_KEY: process.env.RESAS_API_KEY,
+    ESTAT_APPID: process.env.ESTAT_APPID,
+    SITE_URL: process.env.SITE_URL,
   },
 
   // Target: https://go.nuxtjs.dev/config-target
@@ -32,7 +34,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '@/plugins/resas', ssr: true, },
+    // { src: '@/plugins/resas', ssr: true, },
+    { src: '@/plugins/estat', ssr: true, },
     {
       src: '@/plugins/highcharts-vue',
       mode: 'client',
@@ -78,6 +81,18 @@ export default {
     middleware: 'vuex' //ミドルウェアのファイル名
   },
 
+  axios: {
+    proxy: true
+  },
+
+  proxy: {
+    '/json/': {
+      target: 'http://api.e-stat.go.jp/rest/3.0/app/json',
+      pathRewrite: {
+        '^/json/': '/',
+      },
+    },
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
