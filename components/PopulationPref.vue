@@ -3,32 +3,27 @@
     <v-card :loading="$fetchState.pending">
       <p v-if="$fetchState.pending" />
       <div v-else>
-        <!-- タイトル -->
         <v-card-title class="headline">
           {{ title }}
         </v-card-title>
 
         <v-card-text>
           <v-row>
-            <!-- ラジオボタン -->
             <v-radio-group v-model="selectedSeries" row>
               <v-radio label="総数" value="all"></v-radio>
               <v-radio label="内訳" value="break"></v-radio>
             </v-radio-group>
 
             <v-spacer />
-            <!-- ラジオボタン -->
+
             <v-radio-group v-model="selectedChartType" row>
               <v-radio label="Column" value="column"></v-radio>
               <v-radio label="Line" value="line"></v-radio>
-              <!-- <v-radio label="Area" value="area"></v-radio> -->
             </v-radio-group>
           </v-row>
-          <!-- グラフ -->
-          <!-- <HighchartsColumnChart :display-data="displayData" /> -->
 
           <component :is="chartComponent" :display-data="displayData" />
-          <!-- 注釈 -->
+
           <hr class="my-3" />
           <p>地域経済分析システムRESASのAPIを利用して</p>
         </v-card-text>
@@ -122,14 +117,16 @@ export default {
       }
     },
     chartComponent() {
+      let chartComponent
       switch (this.selectedChartType) {
-        case 'column':
-          return 'HighchartsColumnChart'
-          break
         case 'line':
-          return 'HighchartsColumnChart'
+          chartComponent = 'HighchartsLineChart'
+          break
+        case 'column':
+          chartComponent = 'HighchartsColumnChart'
           break
       }
+      return chartComponent
     },
   },
 }

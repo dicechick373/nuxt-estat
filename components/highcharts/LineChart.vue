@@ -18,8 +18,8 @@ export default {
     return {
       colors: [
         '#058DC7',
-        '#50B432',
-        '#ED561B',
+        '#7dbae5',
+        '#ff69b4',
         '#DDDF00',
         '#24CBE5',
         '#64E572',
@@ -33,10 +33,21 @@ export default {
     yAxisData() {
       return [{ opposite: false }]
     },
+    colorList() {
+      const colors = cloneDeep(this.colors)
+      const i = this.displayData.length
+      // console.log(i)
+      if (i === 1) {
+        return colors.slice(0, 1)
+      } else {
+        return colors.slice(1, colors.length - 1)
+      }
+    },
     series() {
+      console.log(this.colorList)
       const series = cloneDeep(this.displayData)
       return series.reduce((acc, cur, i) => {
-        cur['color'] = this.colors[i]
+        cur['color'] = this.colorList[i]
         acc.push(cur)
         return acc
       }, [])
