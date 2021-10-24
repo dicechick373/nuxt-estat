@@ -34,6 +34,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '@/plugins/composition-api', ssr: true, },
     { src: '@/plugins/estat', ssr: true, },
     {
       src: '@/plugins/highcharts-vue',
@@ -90,6 +91,10 @@ export default {
         '^/json/': '/',
       },
     },
+  },
+
+  generate: {
+    interval: 2000,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

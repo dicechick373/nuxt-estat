@@ -45,7 +45,7 @@ export default {
   async fetch() {
     const params = this.estatParams
     const { data } = await this.$estat.get(null, { params })
-    console.log(data)
+    // console.log(data)
     this.estatResponse = data
   },
   props: {

@@ -4,112 +4,111 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, ref, computed } from '@nuxtjs/composition-api'
 import { cloneDeep } from 'lodash'
 
-export default {
+export default defineComponent({
   props: {
     displayData: {
       type: Array,
-      required: true,
-    },
-  },
-  data() {
-    return {
-      colors: [
-        '#058DC7',
-        '#7dbae5',
-        '#ff69b4',
-        '#DDDF00',
-        '#24CBE5',
-        '#64E572',
-        '#FF9655',
-        '#FFF263',
-        '#6AF9C4',
-      ],
+      required: true
     }
   },
-  computed: {
-    yAxisData() {
-      return [{ opposite: false }]
-    },
-    colorList() {
-      const colors = cloneDeep(this.colors)
-      const i = this.displayData.length
-      // console.log(i)
+  setup(props) {
+    const colors = ref<string[]>([
+      '#058DC7',
+      '#7dbae5',
+      '#ff69b4',
+      '#DDDF00',
+      '#24CBE5',
+      '#64E572',
+      '#FF9655',
+      '#FFF263',
+      '#6AF9C4'
+    ])
+
+    const colorList = computed(() => {
+      const i = props.displayData.length
+      const c = cloneDeep(colors.value)
       if (i === 1) {
-        return colors.slice(0, 1)
+        return c.slice(0, 1)
       } else {
-        return colors.slice(1, colors.length - 1)
+        return c.slice(1, c.length - 1)
       }
-    },
-    series() {
-      const series = cloneDeep(this.displayData)
-      return series.reduce((acc, cur, i) => {
-        cur['color'] = this.colorList[i]
+    })
+
+    const series = computed(() => {
+      const d = props.displayData
+      const c = colorList.value
+
+      return d.reduce((acc, cur, i) => {
+        cur['color'] = c[i]
         acc.push(cur)
         return acc
       }, [])
-    },
-    chartOptions() {
+    })
+
+    const chartOptions = computed(() => {
       return {
         chart: {
           height: 280,
           zoomType: 'xy',
-          type: 'column',
+          type: 'column'
         },
         title: {
-          text: null,
+          text: null
         },
         xAxis: {
           min: 1990,
           max: 2020,
           scrollbar: {
-            enabled: true,
+            enabled: true
           },
-          crosshair: true,
+          crosshair: true
         },
-        yAxis: this.yAxisData.map((item) => ({
-          max: item.max,
-          min: item.min,
-          opposite: item.opposite,
+        yAxis: {
+          opposite: true,
           title: {
-            text: '',
-          },
-          labels: {
-            formatter() {
-              return this.value.toLocaleString()
-            },
-          },
-        })),
+            text: ''
+          }
+          // labels: {
+          //   formatter() {
+          //     return this.value.toLocaleString()
+          //   }
+          // }
+        },
         plotOptions: {
           series: {
             pointWidth: 12,
             animation: false,
             label: {
-              connectorAllowed: false,
-            },
+              connectorAllowed: false
+            }
           },
           column: {
-            stacking: 'normal',
-          },
+            stacking: 'normal'
+          }
         },
         legend: {
-          enabled: false,
+          enabled: false
         },
         tooltip: {
           pointFormat:
             '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}{point.unit}</b> ({point.percentage:.0f}%)<br/>',
-          shared: true,
+          shared: true
         },
         credits: {
-          enabled: false,
+          enabled: false
         },
-        series: this.series,
+        series: series.value
       }
-    },
-  },
-}
+    })
+    return {
+      chartOptions
+    }
+  }
+})
 </script>
 
 <style lang="sass" scoped>
