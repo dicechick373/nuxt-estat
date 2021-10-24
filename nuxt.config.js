@@ -1,8 +1,8 @@
-import { NuxtConfig } from '@nuxt/types'
 import colors from 'vuetify/es5/util/colors'
 
-const config: NuxtConfig = {
+export default {
   publicRuntimeConfig: {
+    // RESAS_API_KEY: process.env.RESAS_API_KEY,
     ESTAT_APPID: process.env.ESTAT_APPID,
     SITE_URL: process.env.SITE_URL,
   },
@@ -12,10 +12,10 @@ const config: NuxtConfig = {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - nuxt-estat',
-    title: 'nuxt-estat',
+    titleTemplate: '%s - type-test',
+    title: 'type-test',
     htmlAttrs: {
-      lang: 'ja'
+      lang: 'en'
     },
     meta: [
       { charset: 'utf-8' },
@@ -97,6 +97,3 @@ const config: NuxtConfig = {
   build: {
   }
 }
-
-
-export default config
