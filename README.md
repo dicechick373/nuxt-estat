@@ -31,7 +31,9 @@ ESTAT_APPID = '○○○○○○○○○○○○○○○○○'
 SITE_URL = 'http://localhost:3000/'
 ```
 
-都道府県リスト、市区町村リストは`data/codes`に保存しているが、resasから再取得したい場合は、RESAS_API_KEYも設定する。
+都道府県リスト、市区町村リストは`data/codes`に保存している。
+もしRESASから再取得したい場合は、RESAS_API_KEYを設定して[`setCode.py`](https://github.com/daisuke-minami/nuxt-estat/blob/master/data/codes/setCodes.py)を実行する。。
+
 詳しくは[こちら](https://lg-note.com/2021/10/14/nuxt-resas-axios/)を参照。
 
 ```bash
