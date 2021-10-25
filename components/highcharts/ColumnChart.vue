@@ -8,6 +8,16 @@
 import { defineComponent, ref, computed } from '@nuxtjs/composition-api'
 import { cloneDeep } from 'lodash'
 
+type Series = {
+  name: string
+  data: {
+    x: number
+    y: number
+    unit: string
+  }
+  color: string
+}
+
 export default defineComponent({
   props: {
     displayData: {
@@ -28,9 +38,9 @@ export default defineComponent({
       '#6AF9C4'
     ])
 
-    const colorList = computed(() => {
+    const colorList = computed((): string[] => {
       const i = props.displayData.length
-      const c = cloneDeep(colors.value)
+      const c: string[] = cloneDeep(colors.value)
       if (i === 1) {
         return c.slice(0, 1)
       } else {
@@ -38,8 +48,8 @@ export default defineComponent({
       }
     })
 
-    const series = computed(() => {
-      const d = props.displayData
+    const series = computed((): Series[] => {
+      const d: Series[] = props.displayData
       const c = colorList.value
 
       return d.reduce((acc, cur, i) => {
