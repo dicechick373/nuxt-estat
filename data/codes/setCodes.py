@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 RESAS_API_KEY = os.getenv('RESAS_API_KEY')
 
-# RESAS-APIから都道府県一覧を取得を取得
+# RESAS-APIから都道府県一覧を取得
 url = 'https://opendata.resas-portal.go.jp/api/v1/prefectures'
 req = urllib.request.Request(url, headers={'X-API-KEY': RESAS_API_KEY})
 with urllib.request.urlopen(req) as response:
