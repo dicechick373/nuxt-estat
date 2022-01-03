@@ -5,23 +5,30 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from '@nuxtjs/composition-api'
+import {
+  defineComponent,
+  ref,
+  computed,
+  PropType
+} from '@nuxtjs/composition-api'
 import { cloneDeep } from 'lodash'
 
 type Series = {
   name: string
-  data: {
+  data?: {
     x: number
     y: number
     unit: string
   }
-  color: string
+  color?: string
+  type?: string
+  yAxis?: number
 }
 
 export default defineComponent({
   props: {
     displayData: {
-      type: Array,
+      type: Array as PropType<Series[]>,
       required: true
     }
   },
@@ -40,7 +47,7 @@ export default defineComponent({
 
     const colorList = computed((): string[] => {
       const i = props.displayData.length
-      const c: string[] = cloneDeep(colors.value)
+      const c = cloneDeep(colors.value)
       if (i === 1) {
         return c.slice(0, 1)
       } else {
@@ -49,14 +56,13 @@ export default defineComponent({
     })
 
     const series = computed((): Series[] => {
-      const d: Series[] = props.displayData
+      const d = props.displayData
       const c = colorList.value
 
-      return d.reduce((acc, cur, i) => {
-        cur['color'] = c[i]
-        acc.push(cur)
-        return acc
-      }, [])
+      return d.map((item, i) => {
+        item.color = c[i]
+        return item
+      })
     })
 
     const chartOptions = computed(() => {
