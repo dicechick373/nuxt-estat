@@ -8087,7 +8087,7 @@
   dependencies:
     "commander" "2"
 
-"topojson-server@3.0.0":
+"topojson-server@^3.0.0", "topojson-server@3.0.0":
   "integrity" "sha1-N4546Hw5cqe1vixdYENptrrmnF4="
   "resolved" "https://registry.npmjs.org/topojson-server/-/topojson-server-3.0.0.tgz"
   "version" "3.0.0"
