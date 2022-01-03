@@ -2,9 +2,11 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
   publicRuntimeConfig: {
-    // RESAS_API_KEY: process.env.RESAS_API_KEY,
     ESTAT_APPID: process.env.ESTAT_APPID,
     SITE_URL: process.env.SITE_URL,
+    googleAnalytics: {
+      id: process.env.GOOGLE_ANALYTICS_ID
+    },
   },
 
   // Target: https://go.nuxtjs.dev/config-target
@@ -50,6 +52,7 @@ export default {
     '@nuxt/typescript-build',
     '@nuxtjs/vuetify',
     '@nuxtjs/composition-api/module',
+    '@nuxtjs/google-analytics',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -95,6 +98,10 @@ export default {
 
   generate: {
     interval: 2000,
+  },
+
+  googleAnalytics: {
+    id: process.env.GOOGLE_ANALYTICS_ID,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

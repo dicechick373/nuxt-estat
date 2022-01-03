@@ -17,11 +17,13 @@
     "highcharts": "^9.3.0",
     "highcharts-vue": "^1.4.0",
     "nuxt": "^2.15.7",
+    "topojson": "^3.0.2",
     "vuetify": "^2.5.5"
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.7",
     "@nuxt/typescript-build": "^2.1.0",
+    "@nuxtjs/google-analytics": "^2.4.0",
     "@nuxtjs/vuetify": "^1.12.1"
   }
 }

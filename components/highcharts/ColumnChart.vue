@@ -82,11 +82,6 @@ export default defineComponent({
           title: {
             text: ''
           }
-          // labels: {
-          //   formatter() {
-          //     return this.value.toLocaleString()
-          //   }
-          // }
         },
         plotOptions: {
           series: {
