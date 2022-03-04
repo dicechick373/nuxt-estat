@@ -41,3 +41,4 @@ RESAS_API_KEY = '○○○○○○○○○○○○○○○○○'
 ```
 
 
+# nuxt-estat
